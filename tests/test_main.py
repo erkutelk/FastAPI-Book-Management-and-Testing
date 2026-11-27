@@ -56,3 +56,18 @@ def test_book_get(create_book, get_book, delete_book):
 
     assert response_delete.status_code == 200
 
+
+def test_book_update(client,create_book,delete_book):
+    add_book=create_book('test_1','test_2',True)
+    print(add_book,'Book information')
+
+    data={
+    "title": "title update",
+    "description": "description update",
+    "completed": True
+    }
+
+    book_id=add_book['id']
+    response=client.patch(f'/book-update/{book_id}',json=data)
+    assert response.status_code==200,'An error occurred while updating the book.'
+    delete_book(book_id)
