@@ -1,27 +1,25 @@
-# engine	    :    Veritabanına bağlantı sağlar.
-# SessionLocal	:    Yeni veritabanı oturumu oluşturur.
-# add()	        :    Yeni kayıt eklemeye hazırlar.
-# commit()	    :    Değişiklikleri kaydeder.
-# close()	    :    Oturumu kapatır.
-# Depends()	    :    Gerekli oturumu otomatik sağlar.
-
 import os
+
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
+# .env dosyasını oku
+load_dotenv()
 
-DATABASE_URL=os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 
-sesionLocal=sessionmaker(bind=engine)
+sesionLocal = sessionmaker(bind=engine)
+
 
 class Base(DeclarativeBase):
     pass
 
 
 def get_db():
-    db=sesionLocal()
+    db = sesionLocal()
     try:
         yield db
     finally:

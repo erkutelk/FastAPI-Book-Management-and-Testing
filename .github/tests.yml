@@ -1,0 +1,6 @@
+name: Fast Api
+on:
+push:
+branches:[main,master]
+pull request:
+branches:[main,master]

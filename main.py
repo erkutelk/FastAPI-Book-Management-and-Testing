@@ -7,7 +7,7 @@ from schemas import TodoUpdate,TodoCreate
 
 
 app = FastAPI()
-Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
 
 
 @app.get('/book/{todo__id}',summary="Kitap bilgisini getir",tags=["Kitap İşlemleri"],description='Veritabanında bulunan bir adet kitabın bilgisini getiriri.')
