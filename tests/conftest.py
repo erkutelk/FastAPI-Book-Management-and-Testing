@@ -1,8 +1,12 @@
 
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+# Testler için SQLite kullan
+os.environ["DATABASE_URL"] = "sqlite:///./test.db"
 
 import pytest
 
@@ -15,7 +19,6 @@ from main import app
 import model
 
 
-# Kalıcı SQLite test veritabanı
 TEST_DATABASE_URL = "sqlite:///./test.db"
 
 engine = create_engine(
